@@ -1,7 +1,9 @@
 import { Linkedin, Mail, ExternalLink } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
   
   return (
     <footer className="py-8 sm:py-12 px-4 sm:px-6 lg:px-12 border-t border-border">
@@ -25,7 +27,7 @@ const Footer = () => {
               <Mail className="h-4 w-4 sm:h-5 sm:w-5" />
             </a>
             <a 
-              href="https://www.linkedin.com/in/alan-emmanuel-559544360"
+              href="https://www.linkedin.com/in/alan-emmanuel-beugre-559544360/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors"
@@ -45,8 +47,13 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="text-center text-xs sm:text-sm text-muted-foreground mt-6 sm:mt-8">
-          © {currentYear} Alan Emmanuel Beugré. Tous droits réservés.
+        <div className="text-center mt-6 sm:mt-8 space-y-2">
+          <p className="text-xs sm:text-sm text-muted-foreground">
+            © {currentYear} Alan Emmanuel Beugré. {t("footer.rights")}
+          </p>
+          <p className="text-xs text-muted-foreground/70 italic">
+            {t("footer.designedBy")}
+          </p>
         </div>
       </div>
     </footer>

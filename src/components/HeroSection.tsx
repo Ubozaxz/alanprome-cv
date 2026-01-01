@@ -1,7 +1,10 @@
 import { ArrowDown, Linkedin, Mail, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+  
   return (
     <section className="min-h-screen flex flex-col justify-center relative overflow-hidden px-4 sm:px-6 lg:px-12 pt-20">
       {/* Background gradient orbs */}
@@ -11,7 +14,7 @@ const HeroSection = () => {
       <div className="max-w-5xl mx-auto w-full relative z-10">
         <div className="animate-fade-up">
           <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs sm:text-sm font-medium mb-4 sm:mb-6">
-            Disponible pour des opportunités
+            {t("hero.available")}
           </span>
         </div>
         
@@ -21,25 +24,26 @@ const HeroSection = () => {
         </h1>
         
         <h2 className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-6 sm:mb-8 animate-fade-up animation-delay-400">
-          <span className="block sm:inline">Product Manager & Designer</span>{" "}
+          <span className="block sm:inline">{t("hero.role1")}</span>{" "}
           <span className="hidden sm:inline text-foreground">•</span>{" "}
-          <span className="block sm:inline">Web3 Builder</span>{" "}
+          <span className="block sm:inline">{t("hero.role2")}</span>{" "}
           <span className="hidden sm:inline text-foreground">•</span>{" "}
-          <span className="block sm:inline">AI Enthusiast</span>
+          <span className="block sm:inline">{t("hero.role3")}</span>
         </h2>
         
         <p className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-2xl mb-8 sm:mb-10 animate-fade-up animation-delay-600">
-          Créateur de solutions digitales innovantes à l'intersection du Blockchain, 
-          de l'IA et du design centré utilisateur. Basé en Côte d'Ivoire.
+          {t("hero.description")}
         </p>
         
         <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 animate-fade-up animation-delay-600">
-          <Button size="lg" className="glow-primary hover-lift font-display w-full sm:w-auto">
-            <Mail className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-            Me contacter
+          <Button size="lg" className="glow-primary hover-lift font-display w-full sm:w-auto" asChild>
+            <a href="mailto:allanbeugre@gmail.com">
+              <Mail className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+              {t("hero.contact")}
+            </a>
           </Button>
           <Button size="lg" variant="outline" className="hover-lift font-display w-full sm:w-auto" asChild>
-            <a href="https://www.linkedin.com/in/alan-emmanuel-559544360" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/alan-emmanuel-beugre-559544360/" target="_blank" rel="noopener noreferrer">
               <Linkedin className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
               LinkedIn
             </a>
@@ -47,7 +51,7 @@ const HeroSection = () => {
           <Button size="lg" variant="ghost" className="hover-lift font-display w-full sm:w-auto" asChild>
             <a href="https://coinfi-ci.com" target="_blank" rel="noopener noreferrer">
               <ExternalLink className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-              Portfolio
+              {t("hero.portfolio")}
             </a>
           </Button>
         </div>
