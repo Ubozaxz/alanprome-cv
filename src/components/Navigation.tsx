@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navLinks = [
-  { href: "#about", label: "À propos" },
-  { href: "#skills", label: "Compétences" },
-  { href: "#experience", label: "Expérience" },
-  { href: "#projects", label: "Projets" },
-  { href: "#education", label: "Formation" },
-  { href: "#contact", label: "Contact" },
-];
+import { useTheme } from "@/contexts/ThemeContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
+
+  const navLinks = [
+    { href: "#about", label: t("nav.about") },
+    { href: "#skills", label: t("nav.skills") },
+    { href: "#experience", label: t("nav.experience") },
+    { href: "#projects", label: t("nav.projects") },
+    { href: "#education", label: t("nav.education") },
+    { href: "#contact", label: t("nav.contact") },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +26,10 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleLanguage = () => {
+    setLanguage(language === "fr" ? "en" : "fr");
+  };
 
   return (
     <nav 
@@ -48,9 +56,32 @@ const Navigation = () => {
             ))}
           </div>
           
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleLanguage}
+              className="h-9 w-9"
+              aria-label="Toggle language"
+            >
+              <Globe className="h-4 w-4" />
+              <span className="ml-1 text-xs font-medium">{language.toUpperCase()}</span>
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="h-9 w-9"
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? (
+                <Moon className="h-4 w-4" />
+              ) : (
+                <Sun className="h-4 w-4" />
+              )}
+            </Button>
             <Button size="sm" asChild>
-              <a href="mailto:allanbeugre@gmail.com">Me contacter</a>
+              <a href="mailto:allanbeugre@gmail.com">{t("nav.contactMe")}</a>
             </Button>
           </div>
           
@@ -83,9 +114,38 @@ const Navigation = () => {
                 {link.label}
               </a>
             ))}
+            <div className="flex items-center gap-2 pt-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={toggleLanguage}
+                className="flex-1"
+              >
+                <Globe className="h-4 w-4 mr-2" />
+                {language === "fr" ? "English" : "Français"}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={toggleTheme}
+                className="flex-1"
+              >
+                {theme === "light" ? (
+                  <>
+                    <Moon className="h-4 w-4 mr-2" />
+                    Dark
+                  </>
+                ) : (
+                  <>
+                    <Sun className="h-4 w-4 mr-2" />
+                    Light
+                  </>
+                )}
+              </Button>
+            </div>
             <Button size="sm" className="w-full mt-4" asChild>
               <a href="mailto:allanbeugre@gmail.com" onClick={() => setIsMobileMenuOpen(false)}>
-                Me contacter
+                {t("nav.contactMe")}
               </a>
             </Button>
           </div>

@@ -1,5 +1,6 @@
 import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Experience {
   title: string;
@@ -10,58 +11,70 @@ interface Experience {
   tags: string[];
 }
 
-const experiences: Experience[] = [
-  {
-    title: "Co-founder & Product Manager",
-    company: "CoinFinance",
-    period: "2025 – Présent",
-    description: "Direction du développement d'une plateforme de tokenisation de factures pour optimiser les opérations des PME. Gestion de l'intégration des technologies IA et blockchain pour le MVP.",
-    link: "https://coinfi-ci.com",
-    tags: ["Blockchain", "Product Management", "AI Integration"],
-  },
-  {
-    title: "Founder",
-    company: "COMPTARA",
-    period: "2025 – Présent",
-    description: "Développement d'une solution comptable basée sur la blockchain pour réduire la fraude et la corruption pour les PME africaines.",
-    link: "https://comptara-flow.vercel.app",
-    tags: ["Blockchain", "Accounting", "Anti-fraud"],
-  },
-  {
-    title: "Social Media Manager",
-    company: "Ethereum Côte d'Ivoire (EthAbidjan)",
-    period: "2025 – Présent",
-    description: "Direction de la croissance communautaire et de la communication stratégique pour le principal hub Ethereum en Afrique francophone.",
-    link: "https://www.linkedin.com/company/ethabidjan/",
-    tags: ["Community", "Web3", "Social Media"],
-  },
-  {
-    title: "Social Media Manager",
-    company: "WellBlock Conseils",
-    period: "2025 – Présent",
-    description: "Cabinet de conseil à Abidjan, spécialisé dans les médias et le contenu pour l'Afrique.",
-    link: "https://www.linkedin.com/company/wellblock-conseils/",
-    tags: ["Consulting", "Media", "Content"],
-  },
-  {
-    title: "Leader & Theorist",
-    company: "Institut du Genre et de la Transvirginité",
-    period: "2025 – Présent",
-    description: "Théoricien et concepteur du concept de 'Transvirginité', axé sur la défense de l'identité de genre et des droits humains.",
-    link: "https://www.linkedin.com/company/institut-du-genre-et-de-la-transvirginite/",
-    tags: ["Human Rights", "Theory", "Advocacy"],
-  },
-];
-
 const ExperienceSection = () => {
+  const { t, language } = useLanguage();
+
+  const experiences: Experience[] = [
+    {
+      title: "Co-founder & Product Manager",
+      company: "CoinFinance",
+      period: `2025 – ${t("experience.present")}`,
+      description: language === "fr" 
+        ? "Direction du développement d'une plateforme de tokenisation de factures pour optimiser les opérations des PME. Gestion de l'intégration des technologies IA et blockchain pour le MVP."
+        : "Leading the development of an invoice tokenization platform to optimize SME operations. Managing AI and blockchain technology integration for the MVP.",
+      link: "https://coinfi-ci.com",
+      tags: ["Blockchain", "Product Management", "AI Integration"],
+    },
+    {
+      title: "Founder",
+      company: "COMPTARA",
+      period: `2025 – ${t("experience.present")}`,
+      description: language === "fr"
+        ? "Développement d'une solution comptable basée sur la blockchain pour réduire la fraude et la corruption pour les PME africaines."
+        : "Development of a blockchain-based accounting solution to reduce fraud and corruption for African SMEs.",
+      link: "https://comptara-flow.vercel.app",
+      tags: ["Blockchain", "Accounting", "Anti-fraud"],
+    },
+    {
+      title: "Social Media Manager",
+      company: "Ethereum Côte d'Ivoire (EthAbidjan)",
+      period: `2025 – ${t("experience.present")}`,
+      description: language === "fr"
+        ? "Direction de la croissance communautaire et de la communication stratégique pour le principal hub Ethereum en Afrique francophone."
+        : "Leading community growth and strategic communication for the main Ethereum hub in francophone Africa.",
+      link: "https://www.linkedin.com/company/ethabidjan/",
+      tags: ["Community", "Web3", "Social Media"],
+    },
+    {
+      title: "Social Media Manager",
+      company: "WellBlock Conseils",
+      period: `2025 – ${t("experience.present")}`,
+      description: language === "fr"
+        ? "Cabinet de conseil à Abidjan, spécialisé dans les médias et le contenu pour l'Afrique."
+        : "Consulting firm in Abidjan, specialized in media and content for Africa.",
+      link: "https://www.linkedin.com/company/wellblock-conseils/",
+      tags: ["Consulting", "Media", "Content"],
+    },
+    {
+      title: "Leader & Theorist",
+      company: "Institut du Genre et de la Transvirginité",
+      period: `2025 – ${t("experience.present")}`,
+      description: language === "fr"
+        ? "Théoricien et concepteur du concept de 'Transvirginité', axé sur la défense de l'identité de genre et des droits humains."
+        : "Theorist and creator of the 'Transvirginity' concept, focused on gender identity advocacy and human rights.",
+      link: "https://www.linkedin.com/company/institut-du-genre-et-de-la-transvirginite/",
+      tags: ["Human Rights", "Theory", "Advocacy"],
+    },
+  ];
+
   return (
     <section id="experience" className="section-padding">
       <div className="max-w-4xl mx-auto">
         <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-center">
-          Expérience <span className="gradient-text">Professionnelle</span>
+          {t("experience.title")} <span className="gradient-text">{t("experience.titleHighlight")}</span>
         </h2>
         <p className="text-muted-foreground text-center mb-10 sm:mb-16 max-w-2xl mx-auto text-sm sm:text-base">
-          Un parcours orienté vers l'innovation technologique et l'impact social
+          {t("experience.subtitle")}
         </p>
         
         <div className="relative">
@@ -107,7 +120,7 @@ const ExperienceSection = () => {
                     <Button variant="ghost" size="sm" className="mt-3 sm:mt-4 -ml-2 text-xs sm:text-sm" asChild>
                       <a href={exp.link} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                        Voir le projet
+                        {t("experience.viewProject")}
                       </a>
                     </Button>
                   )}
