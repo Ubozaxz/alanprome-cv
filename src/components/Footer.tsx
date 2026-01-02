@@ -27,7 +27,7 @@ const Footer = () => {
               <Mail className="h-4 w-4 sm:h-5 sm:w-5" />
             </a>
             <a 
-              href="https://www.linkedin.com/in/alan-emmanuel-beugre-559544360/"
+              href="https://www.linkedin.com/in/alan-emmanuel-prom%C3%A9-559544360?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors"

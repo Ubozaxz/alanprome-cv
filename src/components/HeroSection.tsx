@@ -43,7 +43,7 @@ const HeroSection = () => {
             </a>
           </Button>
           <Button size="lg" variant="outline" className="hover-lift font-display w-full sm:w-auto" asChild>
-            <a href="https://www.linkedin.com/in/alan-emmanuel-beugre-559544360/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/alan-emmanuel-prom%C3%A9-559544360?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer">
               <Linkedin className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
               LinkedIn
             </a>
