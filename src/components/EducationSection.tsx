@@ -1,6 +1,8 @@
 import { GraduationCap, Award, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ScrollAnimation, StaggerContainer, StaggerItem } from "@/components/ui/scroll-animation";
+import { motion } from "framer-motion";
 
 interface Education {
   title: string;
@@ -11,7 +13,7 @@ interface Education {
 }
 
 const EducationSection = () => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
   const education: Education[] = [
     {
@@ -36,54 +38,100 @@ const EducationSection = () => {
   ];
 
   return (
-    <section id="education" className="section-padding bg-secondary/30">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-center">
-          {t("education.title")} <span className="gradient-text">{t("education.titleHighlight")}</span>
-        </h2>
-        <p className="text-muted-foreground text-center mb-10 sm:mb-16 max-w-2xl mx-auto text-sm sm:text-base">
-          {t("education.subtitle")}
-        </p>
+    <section id="education" className="section-padding bg-secondary/30 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,hsl(var(--primary)/0.06),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,hsl(var(--accent)/0.06),transparent_40%)]" />
+      </div>
+      
+      <div className="max-w-4xl mx-auto relative z-10">
+        <ScrollAnimation variant="fadeUp">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/50" />
+            <GraduationCap className="w-5 h-5 text-primary" />
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/50" />
+          </div>
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-center">
+            {t("education.title")} <span className="gradient-text">{t("education.titleHighlight")}</span>
+          </h2>
+          <p className="text-muted-foreground text-center mb-10 sm:mb-16 max-w-2xl mx-auto text-sm sm:text-base">
+            {t("education.subtitle")}
+          </p>
+        </ScrollAnimation>
         
-        <div className="grid gap-4 sm:gap-6">
-          {education.map((item) => (
-            <div 
-              key={item.title}
-              className="glass-card p-4 sm:p-6 flex flex-col sm:flex-row items-start gap-3 sm:gap-5 hover-lift"
-            >
-              <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 ${
-                item.type === "degree" 
-                  ? "bg-primary/10 text-primary" 
-                  : "bg-accent/10 text-accent"
-              }`}>
-                {item.type === "degree" ? (
-                  <GraduationCap className="h-6 w-6 sm:h-7 sm:w-7" />
-                ) : (
-                  <Award className="h-6 w-6 sm:h-7 sm:w-7" />
-                )}
-              </div>
-              
-              <div className="flex-1 w-full">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
-                  <div>
-                    <h3 className="font-display text-base sm:text-lg font-semibold">{item.title}</h3>
-                    <p className="text-muted-foreground text-sm">{item.institution}</p>
-                  </div>
-                  <span className="text-xs sm:text-sm text-primary font-medium whitespace-nowrap">{item.year}</span>
-                </div>
+        <StaggerContainer className="grid gap-4 sm:gap-6" staggerDelay={0.15}>
+          {education.map((item, index) => (
+            <StaggerItem key={item.title}>
+              <motion.div 
+                className="glass-card p-5 sm:p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6 hover-lift group relative overflow-hidden"
+                whileHover={{ x: 8 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Gradient line on left */}
+                <div className={`absolute left-0 top-0 bottom-0 w-1 ${
+                  item.type === "degree" 
+                    ? "bg-gradient-to-b from-primary to-primary/50" 
+                    : "bg-gradient-to-b from-accent to-accent/50"
+                }`} />
                 
-                {item.link && (
-                  <Button variant="ghost" size="sm" className="mt-2 sm:mt-3 -ml-2 text-xs sm:text-sm" asChild>
-                    <a href={item.link} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                      {t("education.viewCert")}
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </div>
+                {/* Icon */}
+                <motion.div 
+                  className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shrink-0 relative ${
+                    item.type === "degree" 
+                      ? "bg-primary/10 text-primary" 
+                      : "bg-accent/10 text-accent"
+                  }`}
+                  whileHover={{ rotate: 5, scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {item.type === "degree" ? (
+                    <GraduationCap className="h-7 w-7 sm:h-8 sm:w-8" />
+                  ) : (
+                    <Award className="h-7 w-7 sm:h-8 sm:w-8" />
+                  )}
+                  
+                  {/* Animated ring */}
+                  <motion.div 
+                    className={`absolute inset-0 rounded-2xl border-2 ${
+                      item.type === "degree" ? "border-primary/30" : "border-accent/30"
+                    }`}
+                    initial={{ scale: 1, opacity: 0 }}
+                    whileHover={{ scale: 1.2, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.div>
+                
+                <div className="flex-1 w-full">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+                    <div>
+                      <h3 className="font-display text-lg sm:text-xl font-semibold group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-muted-foreground">{item.institution}</p>
+                    </div>
+                    <span className={`inline-flex items-center text-sm font-medium whitespace-nowrap px-3 py-1 rounded-full ${
+                      item.type === "degree" 
+                        ? "bg-primary/10 text-primary" 
+                        : "bg-accent/10 text-accent"
+                    }`}>
+                      {item.year}
+                    </span>
+                  </div>
+                  
+                  {item.link && (
+                    <Button variant="ghost" size="sm" className="mt-3 -ml-2 text-sm group/btn" asChild>
+                      <a href={item.link} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="mr-2 h-4 w-4 group-hover/btn:rotate-12 transition-transform" />
+                        {t("education.viewCert")}
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </motion.div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
