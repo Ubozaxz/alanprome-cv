@@ -28,7 +28,7 @@ const ContactSection = () => {
           </a>
           
           <a 
-            href="https://www.linkedin.com/in/alan-emmanuel-beugre-559544360/"
+            href="https://www.linkedin.com/in/alan-emmanuel-prom%C3%A9-559544360?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
             target="_blank"
             rel="noopener noreferrer"
             className="glass-card p-4 sm:p-6 hover-lift group cursor-pointer"
@@ -37,7 +37,7 @@ const ContactSection = () => {
               <Linkedin className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
             </div>
             <h3 className="font-display font-semibold mb-1 sm:mb-2 text-sm sm:text-base">LinkedIn</h3>
-            <p className="text-muted-foreground text-xs sm:text-sm">Alan Emmanuel Beugré</p>
+            <p className="text-muted-foreground text-xs sm:text-sm">Alan Emmanuel Promé</p>
           </a>
           
           <div className="glass-card p-4 sm:p-6">

@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import coinfinanceImg from "@/assets/coinfinance-preview.jpg";
@@ -12,6 +12,7 @@ interface Project {
   image: string;
   tags: string[];
   liveUrl?: string;
+  githubUrl?: string;
   featured?: boolean;
 }
 
@@ -23,6 +24,7 @@ const projects: Project[] = [
     image: coinfinanceImg,
     tags: ["Blockchain", "FinTech", "AI", "Product Management"],
     liveUrl: "https://coinfi-ci.com",
+    githubUrl: "https://github.com/YOHOUJOSIAS/COINFI_PLATFORM",
     featured: true,
   },
   {
@@ -32,6 +34,7 @@ const projects: Project[] = [
     image: comptaraImg,
     tags: ["Blockchain", "Accounting", "Web3", "dApp"],
     liveUrl: "https://comptara-flow.vercel.app",
+    githubUrl: "https://github.com/Ubozaxz/ledger-on-chain-comptara",
     featured: true,
   },
   {
@@ -97,12 +100,20 @@ const ProjectsSection = () => {
                   ))}
                 </div>
                 
-                <div className="flex gap-2">
+                <div className="flex flex-col xs:flex-row gap-2">
                   {project.liveUrl && (
                     <Button size="sm" className="flex-1 text-xs sm:text-sm" asChild>
                       <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
                         {t("projects.view")}
+                      </a>
+                    </Button>
+                  )}
+                  {project.githubUrl && (
+                    <Button size="sm" variant="outline" className="flex-1 text-xs sm:text-sm" asChild>
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                        GitHub
                       </a>
                     </Button>
                   )}
