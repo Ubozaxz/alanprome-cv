@@ -27,6 +27,9 @@ const translations = {
     "hero.description": "Créateur de solutions digitales innovantes à l'intersection du Blockchain, de l'IA et du design centré utilisateur. Basé en Côte d'Ivoire.",
     "hero.contact": "Me contacter",
     "hero.portfolio": "Portfolio",
+    "hero.stat1": "Années d'expérience",
+    "hero.stat2": "Projets réalisés",
+    "hero.stat3": "Passion & Dévouement",
     
     // About
     "about.title": "À propos de",
@@ -102,6 +105,9 @@ const translations = {
     "hero.description": "Creator of innovative digital solutions at the intersection of Blockchain, AI and user-centered design. Based in Côte d'Ivoire.",
     "hero.contact": "Contact me",
     "hero.portfolio": "Portfolio",
+    "hero.stat1": "Years of experience",
+    "hero.stat2": "Projects completed",
+    "hero.stat3": "Passion & Dedication",
     
     // About
     "about.title": "About",
