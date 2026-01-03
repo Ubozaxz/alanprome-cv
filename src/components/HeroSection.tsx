@@ -159,7 +159,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 1 }}
             >
-              3+
+              Web3
             </motion.span>
             <span className="text-xs sm:text-sm text-muted-foreground">{t("hero.stat1")}</span>
           </div>

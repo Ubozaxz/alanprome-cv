@@ -27,6 +27,7 @@ const EducationSection = () => {
       institution: "Hedera",
       year: "2025",
       type: "certification",
+      link: "https://drive.google.com/file/d/1iJXlzUv55l4zO3SR5z1Z1KtQ0-lYFU9v/view?usp=drivesdk",
     },
     {
       title: "NFT Designer Certification",
